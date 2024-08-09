@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scrolling Cards</title>
+  <style>
+  body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  height: 200vh; /* To allow scrolling */
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.card {
+  width: 300px;
+  height: 200px;
+  margin: 20px;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 200px;
+  font-size: 24px;
+  transition: background-color 0.3s ease;
+}
+
+#card1 { background-color: #f8b400; }
+#card2 { background-color: #f85f73; }
+#card3 { background-color: #6a0572; }
+#card4 { background-color: #f44236; }
+#card5 { background-color: #3498db; }
+
+  </style>
+</head>
+<body>
+  <div class="card-container">
+    <div class="card" id="card1">Card 1</div>
+    <div class="card" id="card2">Card 2</div>
+    <div class="card" id="card3">Card 3</div>
+    <div class="card" id="card4">Card 4</div>
+    <div class="card" id="card5">Card 5</div>
+  </div>
+  <script>
+  window.addEventListener('scroll', function() {
+  const cards = document.querySelectorAll('.card');
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+  cards.forEach(card => {
+    const cardOffsetTop = card.offsetTop;
+    const windowHeight = window.innerHeight;
+    if (scrollTop + windowHeight >= cardOffsetTop + card.offsetHeight / 2) {
+      card.style.backgroundColor = 'lightgreen';
+    } else {
+      card.style.backgroundColor = ''; 
+    }
+  });
+});
+
+  </script>
+</body>
+</html>
